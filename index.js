@@ -150,7 +150,14 @@ function Config(truffle_directory, working_directory, network) {
 
         var options = self.network_config;
         options.verboseRpc = self.verboseRpc;
-        return Provider.create(options);
+
+        var provider =  Provider.create(options);
+
+        Provider.test_connection(provider, function(error, coinbase) {
+          throw error;
+        });
+
+        return provider;
       },
       set: function(val) {
         throw new Error("Don't set config.provider directly. Instead, set config.networks and then set config.networks[<network name>].provider")
