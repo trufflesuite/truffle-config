@@ -154,7 +154,9 @@ function Config(truffle_directory, working_directory, network) {
         var provider =  Provider.create(options);
 
         Provider.test_connection(provider, function(error, coinbase) {
-          throw error;
+          if (error != null) {
+            throw error;
+          }
         });
 
         return provider;
