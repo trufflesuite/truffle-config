@@ -14,7 +14,7 @@ function Config(truffle_directory, working_directory, network) {
   var self = this;
 
   var default_tx_values = {
-    gas: 4712388,
+    gas: 6721975,
     gasPrice: 100000000000, // 100 Shannon,
     from: null
   };
@@ -36,6 +36,15 @@ function Config(truffle_directory, working_directory, network) {
       ipfs_protocol: "https",
       registry: "0x8011df4830b4f696cd81393997e5371b93338878",
       install_provider_uri: "https://ropsten.infura.io/truffle"
+    },
+    solc: {
+      optimizer: {
+        enabled: false,
+        runs: 200
+      }
+    },
+    logger: {
+      log: function() {},
     }
   };
 
@@ -50,6 +59,8 @@ function Config(truffle_directory, working_directory, network) {
     resolver: function() {},
     artifactor: function() {},
     ethpm: function() {},
+    solc: function() {},
+    logger: function() {},
 
     build_directory: function() {
       return path.join(self.working_directory, "build");
